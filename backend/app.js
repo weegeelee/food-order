@@ -46,11 +46,10 @@ const ordersPath = path.join(__dirname, 'data', 'orders.json');
 /*app.get('/', (req, res) => {
   res.send('🚀 后端服务运行中，请访问 /meals 获取餐品数据');
 });*/
-javascript
-Copy
+
 app.get('/meals', async (req, res) => {
   try {
-    const data = await fs.readFile(mealsPath, 'utf8'); // ✅ 使用绝对路径
+    const data = await fs.readFile(mealsPath, 'utf8'); // 
     res.json(JSON.parse(data));
   } catch (err) {
     console.error('读取餐品数据失败:', err);
