@@ -33,8 +33,8 @@ const app = express();
 app.use(express.json());
 app.use(cors({
   origin: [
-    'http://localhost:5173', // 开发环境
-    'https://weegeelee.github.io' // 生产环境
+    'http://localhost:5173', 
+    'https://weegeelee.github.io' 
   ]
 }));
 
@@ -43,24 +43,24 @@ app.use('/images', express.static(path.join(__dirname, 'public', 'images')));
 const mealsPath = path.join(__dirname, 'data', 'available-meals.json');
 const ordersPath = path.join(__dirname, 'data', 'orders.json');
 
-/*app.get('/', (req, res) => {
+app.get('/', (req, res) => {
   res.send('🚀 后端服务运行中，请访问 /meals 获取餐品数据');
-});*/
+});
 
 app.get('/meals', async (req, res) => {
   try {
     const data = await fs.readFile(mealsPath, 'utf8'); // 
     res.json(JSON.parse(data));
   } catch (err) {
-    console.error('读取餐品数据失败:', err);
-    res.status(500).json({ error: '无法加载餐品数据' });
+    console.error('Failed to read food data:', err);
+    res.status(500).json({ error: 'Unable to load meal data' });
   }
 });
 
-app.get('/meals', async (req, res) => {
+/*app.get('/meals', async (req, res) => {
   const meals = await fs.readFile('./data/available-meals.json', 'utf8');
   res.json(JSON.parse(meals));
-});
+});*/
 
 app.post('/orders', async (req, res) => {
   const orderData = req.body.order;
