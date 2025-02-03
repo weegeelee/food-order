@@ -1,9 +1,9 @@
 {
   "name": "food-order",
+  "homepage": "https://weegeelee.github.io/food-order",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://weegeelee.github.io/food-order",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,8 +11,10 @@
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
+   
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -24,6 +26,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "gh-pages": "^6.3.0",
     "vite": "^4.4.5"
   }
 }

@@ -1,4 +1,4 @@
-/*import fs from 'node:fs/promises';
+import fs from 'node:fs/promises';
 
 import bodyParser from 'body-parser';
 import express from 'express';
@@ -17,50 +17,13 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   next();
-});*/
-
-import express from 'express';
-import cors from 'cors';
-import fs from 'node:fs/promises';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const app = express();
-
-app.use(express.json());
-app.use(cors({
-  origin: [
-    'http://localhost:5173', 
-    'https://weegeelee.github.io' 
-  ]
-}));
-
-app.use('/images', express.static(path.join(__dirname, 'public', 'images')));
-
-const mealsPath = path.join(__dirname, 'data', 'available-meals.json');
-const ordersPath = path.join(__dirname, 'data', 'orders.json');
-
-app.get('/', (req, res) => {
-  res.send('🚀 后端服务运行中，请访问 /meals 获取餐品数据');
 });
+
 
 app.get('/meals', async (req, res) => {
-  try {
-    const data = await fs.readFile(mealsPath, 'utf8'); // 
-    res.json(JSON.parse(data));
-  } catch (err) {
-    console.error('Failed to read food data:', err);
-    res.status(500).json({ error: 'Unable to load meal data' });
-  }
-});
-
-/*app.get('/meals', async (req, res) => {
   const meals = await fs.readFile('./data/available-meals.json', 'utf8');
   res.json(JSON.parse(meals));
-});*/
+});
 
 app.post('/orders', async (req, res) => {
   const orderData = req.body.order;
@@ -108,10 +71,10 @@ app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });
 });
 
-/*app.listen(3000);
+/*app.listen(3000);*/
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
-});*/
+});
 
-export default app;
+
